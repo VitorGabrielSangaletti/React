@@ -1,1 +1,1 @@
-Aula de React no curso de informatica na satc
+Aula de React na terceira fase do curso de informatica na satc
