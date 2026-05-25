@@ -1,5 +1,6 @@
-import { StyleSheet, Text, View, ScrollView} from 'react-native';
-import {Card} from 'react-native-paper';
+import { StyleSheet, Text, View, Image, ScrollView} from 'react-native';
+import { useState } from 'react';
+import { Button, Card } from 'react-native-paper';
 import {drivers} from '../data/drivers';
 
 
@@ -14,7 +15,7 @@ return (
 <Card>
    <Card.Cover source={{ uri: motorista.image }} />
   <Card.Content style={styles.cards}>
-    
+    {/* <image source={require('./Sources/titann.jpg')} /> */}
     <Text style={styles.txt}>{motorista.name}</Text>
     <Text style={styles.txt}>{motorista.description}</Text>
     <Text style={styles.txt}>{motorista.team}</Text>
@@ -38,6 +39,9 @@ const styles = StyleSheet.create({
   cards: {
     alignItems: 'center'
   },
-  
+  img: {
+    width: 300,
+    height: 300
+  }
 });
 
