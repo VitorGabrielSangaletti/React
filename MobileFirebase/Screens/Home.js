@@ -1,9 +1,11 @@
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { useState, useEffect } from 'react';
 import { Database } from 'firebase/database';
-import { collection, getDoc, QuerySnapshot } from 'firebase/firestore';
+import { collection, getDocs, QuerySnapshot } from 'firebase/firestore';
+import { FlatList } from 'react-native';
+import CardProduct from '../components/CardProduct';
 
-export default function Home(navigation) {
+export default function Home({navigation}) {
 
   const [produtos, setprodutos] = useState([]);
 
@@ -13,12 +15,8 @@ export default function Home(navigation) {
         const querySnapshot = await getDocs(collection(Database, 'produtos'))
         const lista = [];
         querySnapshot.forEach((doc) => {
-          lista.push({
-            id: doc.id,
-            ...doc.data()
-          })
-          
-        });
+          lista.push({id: doc.id, ...doc.data()})
+          });
         setprodutos(lista);
 
       }catch (error) {
@@ -30,11 +28,25 @@ export default function Home(navigation) {
   }, []);
  return (
 
-<View style={styles.container}>
+  <View style={styles.container}>
   <Text style={styles.txt}>Home</Text>
+    <FlatList
+      data={produtos}
+      renderItem={({ item }) => (
+
+      <CardProduct
+        imagem={item.imagem}
+        nome={item.nome}
+        valor={item.valor}
+      />
+      )}
+      keyExtractor={item => item.id}
+    />    
+
+
   <Button title='Add Produto' onPress={() => (navigation.navigate('AddProduct'))} />
   
-  </View>
+ </View>
 )}
 
 const styles = StyleSheet.create({

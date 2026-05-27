@@ -68,10 +68,11 @@ export default function AddProduct() {
         style={styles.input}
       />
 
-      <TouchableOpacity style={styles.botao}>
+      <TouchableOpacity style={styles.botao} onPress={CadastrarProduto}>
         <Text style={styles.textoBotao}>
           Adicionar
-        </Text>
+        </Text> 
+
       </TouchableOpacity>
 
     </View>
